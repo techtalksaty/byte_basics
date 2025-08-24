@@ -9,6 +9,7 @@ import '../models/progress_model.dart';
 
 class QuizProvider with ChangeNotifier {
   List<QuizCategory> _categories = [];
+  List<LearnCategory> _learnCategories = [];
   QuizCategory? _selectedCategory;
   int _currentQuestionIndex = 0;
   String? _selectedAnswer;
@@ -19,6 +20,7 @@ class QuizProvider with ChangeNotifier {
   final Box<QuizBadge> _badgeBox = Hive.box<QuizBadge>('badgeBox');
 
   List<QuizCategory> get categories => _categories;
+  List<LearnCategory> get learnCategories => _learnCategories;
   QuizCategory? get selectedCategory => _selectedCategory;
   int get currentQuestionIndex => _currentQuestionIndex;
   String? get selectedAnswer => _selectedAnswer;
@@ -34,20 +36,40 @@ class QuizProvider with ChangeNotifier {
       _isLoading = true;
       _error = null;
       notifyListeners();
-      final String response = await rootBundle.loadString('assets/questions.json');
-      // Debug-only: Log JSON in debug mode
+
+      // Load quiz questions
+      final String quizResponse = await rootBundle.loadString('assets/questions.json');
+      // Debug-only: Log quiz JSON
       if (kDebugMode) {
-        developer.log('Loaded JSON: $response', name: 'QuizProvider');
+        developer.log('Loaded quiz JSON: $quizResponse', name: 'QuizProvider');
       }
-      final Map<String, dynamic> data = jsonDecode(response);
-      _categories = (data['categories'] as List)
+      final Map<String, dynamic> quizData = jsonDecode(quizResponse);
+      _categories = (quizData['categories'] as List)
           .map((c) => QuizCategory.fromJson(c))
           .toList();
-      // Debug-only: Log category count
+
+      // Load learning content
+      final String learnResponse = await rootBundle.loadString('assets/learn_content.json');
+      // Debug-only: Log learn JSON
       if (kDebugMode) {
-        developer.log('Loaded categories: ${_categories.length}', name: 'QuizProvider');
+        developer.log('Loaded learn JSON: $learnResponse', name: 'QuizProvider');
       }
-      // Initialize badges for each category if not already set
+      final Map<String, dynamic> learnData = jsonDecode(learnResponse);
+      _learnCategories = (learnData['categories'] as List)
+          .map((c) => LearnCategory.fromJson(c))
+          .toList();
+
+      // Debug-only: Validate category alignment
+      if (kDebugMode) {
+        final quizNames = _categories.map((c) => c.name).toSet();
+        final learnNames = _learnCategories.map((c) => c.name).toSet();
+        if (quizNames.length != learnNames.length || quizNames.difference(learnNames).isNotEmpty) {
+          developer.log('Category mismatch between questions and learn content: Quiz=$quizNames, Learn=$learnNames', name: 'QuizProvider');
+        }
+        developer.log('Loaded quiz categories: ${_categories.length}, learn categories: ${_learnCategories.length}', name: 'QuizProvider');
+      }
+
+      // Initialize badges for each quiz category
       for (var category in _categories) {
         if (!_badgeBox.containsKey(category.name)) {
           _badgeBox.put(
@@ -124,7 +146,7 @@ class QuizProvider with ChangeNotifier {
 
   double getProgressPercentage(String categoryName) {
     final totalQuestions = _categories
-        .firstWhere((cat) => cat.name == categoryName)
+        .firstWhere((cat) => cat.name == categoryName, orElse: () => QuizCategory(name: categoryName, questions: []))
         .questions
         .length;
     final completedQuestions = _progressBox.values

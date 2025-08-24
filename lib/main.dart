@@ -15,8 +15,9 @@ void main() async {
   Hive.registerAdapter(ProgressAdapter());
   Hive.registerAdapter(QuizBadgeAdapter());
   Hive.registerAdapter(QuizCategoryAdapter());
-  Hive.registerAdapter(QuestionAdapter()); // Ensure this matches generated adapter
+  Hive.registerAdapter(QuestionAdapter());
   Hive.registerAdapter(LearnContentAdapter());
+  Hive.registerAdapter(LearnCategoryAdapter()); // Added for LearnCategory
   await Hive.openBox<Progress>('progressBox');
   await Hive.openBox<QuizBadge>('badgeBox');
   runApp(const ByteBasicsApp());

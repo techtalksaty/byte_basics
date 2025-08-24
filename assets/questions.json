@@ -4,128 +4,231 @@
       "name": "Hardware",
       "questions": [
         {
-          "id": "H001",
-          "question": "What is the main function of a CPU?",
-          "options": ["Store data", "Process instructions", "Display graphics", "Manage network"],
-          "answer": 1
+          "id": "1",
+          "question": "What does CPU stand for?",
+          "options": ["Central Processing Unit", "Computer Personal Unit", "Core Processing Unit", "Central Power Unit"],
+          "answer": 0,
+          "explanation": "The CPU is the brain of the computer, executing instructions."
         },
         {
-          "id": "H002",
-          "question": "What does RAM stand for?",
-          "options": ["Read Access Memory", "Random Access Memory", "Run Active Module", "Read Active Memory"],
-          "answer": 1
+          "id": "2",
+          "question": "What is RAM used for?",
+          "options": ["Permanent storage", "Temporary data storage", "Processing graphics", "Running the OS"],
+          "answer": 1,
+          "explanation": "RAM stores data temporarily for quick CPU access."
         },
         {
-          "id": "H003",
-          "question": "Which component stores the operating system?",
-          "options": ["CPU", "RAM", "Hard Drive", "GPU"],
-          "answer": 2
-        }
-      ],
-      "learnContent": [
-        {
-          "id": "LC_H001",
-          "question": "What is a CPU?",
-          "answer": "The Central Processing Unit (CPU) is the brain of a computer, responsible for executing instructions from programs."
+          "id": "3",
+          "question": "What is the function of a GPU?",
+          "options": ["General computing", "Rendering graphics", "Managing memory", "Storing data"],
+          "answer": 1,
+          "explanation": "The GPU (Graphics Processing Unit) handles rendering of images and videos."
         }
       ]
     },
     {
       "name": "Operating Systems",
-      "questions": [],
-      "learnContent": [
+      "questions": [
         {
-          "id": "LC_OS001",
-          "question": "What is an operating system?",
-          "answer": "An operating system (OS) is software that manages computer hardware and provides services for applications."
+          "id": "4",
+          "question": "Which of these is an operating system?",
+          "options": ["Microsoft Word", "Windows 10", "Google Chrome", "Python"],
+          "answer": 1,
+          "explanation": "Windows 10 is an operating system managing computer resources."
+        },
+        {
+          "id": "5",
+          "question": "What is the purpose of a file system in an OS?",
+          "options": ["To manage hardware", "To organize and store files", "To run applications", "To connect to the internet"],
+          "answer": 1,
+          "explanation": "A file system organizes and manages files on storage devices."
+        },
+        {
+          "id": "6",
+          "question": "What is a kernel in an OS?",
+          "options": ["A user interface", "The core that manages system resources", "A type of software", "A hardware driver"],
+          "answer": 1,
+          "explanation": "The kernel is the core of an OS, handling resource allocation."
         }
       ]
     },
     {
       "name": "Software",
-      "questions": [],
-      "learnContent": [
+      "questions": [
         {
-          "id": "LC_S001",
-          "question": "What is software?",
-          "answer": "Software is a set of instructions or programs that tell a computer what to do."
+          "id": "7",
+          "question": "What is an operating system?",
+          "options": ["A type of hardware", "Software managing computer resources", "A programming language", "A web browser"],
+          "answer": 1,
+          "explanation": "An OS manages hardware and software resources."
+        },
+        {
+          "id": "8",
+          "question": "What is a compiler?",
+          "options": ["A text editor", "A program that translates code", "A hardware component", "A database"],
+          "answer": 1,
+          "explanation": "A compiler translates high-level code into machine code."
+        },
+        {
+          "id": "9",
+          "question": "What does IDE stand for?",
+          "options": ["Internal Device Emulator", "Integrated Development Environment", "Interactive Data Editor", "Internal Disk Engine"],
+          "answer": 1,
+          "explanation": "An IDE provides tools for software development."
         }
       ]
     },
     {
       "name": "Programming Intro",
-      "questions": [],
-      "learnContent": [
+      "questions": [
         {
-          "id": "LC_P001",
-          "question": "What is programming?",
-          "answer": "Programming is the process of writing instructions for a computer to perform specific tasks."
+          "id": "10",
+          "question": "What is a variable in programming?",
+          "options": ["A fixed value", "A storage location for data", "A type of loop", "A function"],
+          "answer": 1,
+          "explanation": "A variable stores data that can change during program execution."
+        },
+        {
+          "id": "11",
+          "question": "What does a loop do in programming?",
+          "options": ["Stores data", "Repeats a block of code", "Defines a function", "Manages memory"],
+          "answer": 1,
+          "explanation": "A loop repeats code until a condition is met."
+        },
+        {
+          "id": "12",
+          "question": "What is a function in programming?",
+          "options": ["A type of variable", "A reusable block of code", "A hardware component", "A data type"],
+          "answer": 1,
+          "explanation": "A function is a reusable block of code performing a specific task."
         }
       ]
     },
     {
       "name": "Networking Basics",
-      "questions": [],
-      "learnContent": [
+      "questions": [
         {
-          "id": "LC_N001",
-          "question": "What is a network?",
-          "answer": "A network is a group of interconnected devices that communicate to share resources and data."
+          "id": "13",
+          "question": "What does IP stand for in networking?",
+          "options": ["Internet Processor", "Internal Protocol", "Internet Protocol", "Integrated Port"],
+          "answer": 2,
+          "explanation": "IP (Internet Protocol) defines how data is sent over networks."
+        },
+        {
+          "id": "14",
+          "question": "What is a router?",
+          "options": ["A storage device", "A device that forwards data packets", "A type of software", "A programming tool"],
+          "answer": 1,
+          "explanation": "A router directs data packets between networks."
         }
       ]
     },
     {
       "name": "Internet Basics",
-      "questions": [],
-      "learnContent": [
+      "questions": [
         {
-          "id": "LC_I001",
-          "question": "What is the Internet?",
-          "answer": "The Internet is a global network of computers connected to share information and services."
+          "id": "15",
+          "question": "What is a web browser?",
+          "options": ["A programming language", "Software for accessing the internet", "A type of hardware", "A database system"],
+          "answer": 1,
+          "explanation": "A web browser is software used to access websites on the internet."
+        },
+        {
+          "id": "16",
+          "question": "What does URL stand for?",
+          "options": ["Universal Resource Locator", "Uniform Response Link", "Unique Reference Language", "Universal Routing Logic"],
+          "answer": 0,
+          "explanation": "A URL is an address for locating resources on the internet."
+        },
+        {
+          "id": "17",
+          "question": "What is a search engine?",
+          "options": ["A type of virus", "A tool for finding online content", "A hardware component", "A programming tool"],
+          "answer": 1,
+          "explanation": "A search engine helps users find information on the internet."
         }
       ]
     },
     {
       "name": "Cybersecurity",
-      "questions": [],
-      "learnContent": [
+      "questions": [
         {
-          "id": "LC_C001",
-          "question": "What is cybersecurity?",
-          "answer": "Cybersecurity involves protecting computer systems and data from unauthorized access or attacks."
+          "id": "18",
+          "question": "What is a firewall?",
+          "options": ["A virus scanner", "A network security system", "A type of software", "A hardware driver"],
+          "answer": 1,
+          "explanation": "A firewall monitors and controls network traffic to enhance security."
+        },
+        {
+          "id": "19",
+          "question": "What is phishing?",
+          "options": ["A programming technique", "A type of cyberattack", "A network protocol", "A hardware failure"],
+          "answer": 1,
+          "explanation": "Phishing is a cyberattack that tricks users into sharing sensitive information."
+        },
+        {
+          "id": "20",
+          "question": "What does VPN stand for?",
+          "options": ["Virtual Private Network", "Variable Public Node", "Virtual Processing Network", "Verified Personal Node"],
+          "answer": 0,
+          "explanation": "A VPN creates a secure connection over the internet."
         }
       ]
     },
     {
       "name": "Databases",
-      "questions": [],
-      "learnContent": [
+      "questions": [
         {
-          "id": "LC_D001",
+          "id": "21",
           "question": "What is a database?",
-          "answer": "A database is an organized collection of data, typically stored and accessed electronically."
+          "options": ["A programming language", "A system for storing data", "A type of hardware", "A web browser"],
+          "answer": 1,
+          "explanation": "A database is an organized collection of data, typically stored electronically."
+        },
+        {
+          "id": "22",
+          "question": "What does SQL stand for?",
+          "options": ["System Query Language", "Structured Query Language", "Simple Query Logic", "Sequential Question Language"],
+          "answer": 1,
+          "explanation": "SQL is a language for managing and querying databases."
         }
       ]
     },
     {
       "name": "Cloud Computing",
-      "questions": [],
-      "learnContent": [
+      "questions": [
         {
-          "id": "LC_CC001",
+          "id": "23",
           "question": "What is cloud computing?",
-          "answer": "Cloud computing is the delivery of computing services like storage and processing over the Internet."
+          "options": ["Local data storage", "Internet-based computing services", "A type of hardware", "A programming language"],
+          "answer": 1,
+          "explanation": "Cloud computing delivers computing services over the internet."
+        },
+        {
+          "id": "24",
+          "question": "What is a virtual machine?",
+          "options": ["A physical server", "A software emulation of a computer", "A type of database", "A network protocol"],
+          "answer": 1,
+          "explanation": "A virtual machine emulates a computer system within software."
         }
       ]
     },
     {
       "name": "AI and ML Basics",
-      "questions": [],
-      "learnContent": [
+      "questions": [
         {
-          "id": "LC_AI001",
-          "question": "What is AI?",
-          "answer": "Artificial Intelligence (AI) is the simulation of human intelligence processes by computer systems."
+          "id": "25",
+          "question": "What does AI stand for?",
+          "options": ["Automated Intelligence", "Artificial Intelligence", "Adaptive Interface", "Algorithmic Integration"],
+          "answer": 1,
+          "explanation": "AI is the simulation of human intelligence by machines."
+        },
+        {
+          "id": "26",
+          "question": "What is machine learning?",
+          "options": ["A type of hardware", "A subset of AI using data to learn", "A programming language", "A network protocol"],
+          "answer": 1,
+          "explanation": "Machine learning enables systems to learn from data without explicit programming."
         }
       ]
     }

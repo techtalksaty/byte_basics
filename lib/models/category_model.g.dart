@@ -19,20 +19,17 @@ class QuizCategoryAdapter extends TypeAdapter<QuizCategory> {
     return QuizCategory(
       name: fields[0] as String,
       questions: (fields[1] as List).cast<Question>(),
-      learnContent: (fields[2] as List).cast<LearnContent>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, QuizCategory obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(2)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
-      ..write(obj.questions)
-      ..writeByte(2)
-      ..write(obj.learnContent);
+      ..write(obj.questions);
   }
 
   @override
@@ -42,6 +39,43 @@ class QuizCategoryAdapter extends TypeAdapter<QuizCategory> {
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is QuizCategoryAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class LearnCategoryAdapter extends TypeAdapter<LearnCategory> {
+  @override
+  final int typeId = 5;
+
+  @override
+  LearnCategory read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return LearnCategory(
+      name: fields[0] as String,
+      learnContent: (fields[1] as List).cast<LearnContent>(),
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, LearnCategory obj) {
+    writer
+      ..writeByte(2)
+      ..writeByte(0)
+      ..write(obj.name)
+      ..writeByte(1)
+      ..write(obj.learnContent);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is LearnCategoryAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

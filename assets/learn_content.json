@@ -1,0 +1,109 @@
+{
+  "categories": [
+    {
+      "name": "Hardware",
+      "learnContent": [
+        {
+          "id": "LC_H001",
+          "question": "What is a CPU?",
+          "answer": "The Central Processing Unit (CPU) is the brain of a computer, responsible for executing instructions."
+        },
+        {
+          "id": "LC_H002",
+          "question": "What is RAM used for?",
+          "answer": "Random Access Memory (RAM) temporarily stores data that the CPU needs to access quickly."
+        }
+      ]
+    },
+    {
+      "name": "Operating Systems",
+      "learnContent": [
+        {
+          "id": "LC_OS001",
+          "question": "What is an operating system?",
+          "answer": "An operating system (OS) is software that manages computer hardware and provides services for applications."
+        }
+      ]
+    },
+    {
+      "name": "Software",
+      "learnContent": [
+        {
+          "id": "LC_S001",
+          "question": "What is software?",
+          "answer": "Software is a set of instructions or programs that tell a computer what to do."
+        }
+      ]
+    },
+    {
+      "name": "Programming Intro",
+      "learnContent": [
+        {
+          "id": "LC_P001",
+          "question": "What is programming?",
+          "answer": "Programming is the process of writing instructions for a computer to perform specific tasks."
+        }
+      ]
+    },
+    {
+      "name": "Networking Basics",
+      "learnContent": [
+        {
+          "id": "LC_N001",
+          "question": "What is a network?",
+          "answer": "A network is a group of interconnected devices that communicate to share resources and data."
+        }
+      ]
+    },
+    {
+      "name": "Internet Basics",
+      "learnContent": [
+        {
+          "id": "LC_I001",
+          "question": "What is the Internet?",
+          "answer": "The Internet is a global network of computers connected to share information and services."
+        }
+      ]
+    },
+    {
+      "name": "Cybersecurity",
+      "learnContent": [
+        {
+          "id": "LC_C001",
+          "question": "What is cybersecurity?",
+          "answer": "Cybersecurity involves protecting computer systems and data from unauthorized access or attacks."
+        }
+      ]
+    },
+    {
+      "name": "Databases",
+      "learnContent": [
+        {
+          "id": "LC_D001",
+          "question": "What is a database?",
+          "answer": "A database is an organized collection of data, typically stored and accessed electronically."
+        }
+      ]
+    },
+    {
+      "name": "Cloud Computing",
+      "learnContent": [
+        {
+          "id": "LC_CC001",
+          "question": "What is cloud computing?",
+          "answer": "Cloud computing is the delivery of computing services like storage and processing over the Internet."
+        }
+      ]
+    },
+    {
+      "name": "AI and ML Basics",
+      "learnContent": [
+        {
+          "id": "LC_AI001",
+          "question": "What is AI?",
+          "answer": "Artificial Intelligence (AI) is the simulation of human intelligence processes by computer systems."
+        }
+      ]
+    }
+  ]
+}

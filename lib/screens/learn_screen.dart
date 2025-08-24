@@ -9,7 +9,7 @@ class LearnScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<QuizProvider>(context);
-    final categories = provider.categories;
+    final categories = provider.learnCategories;
 
     return Scaffold(
       appBar: AppBar(
@@ -33,7 +33,6 @@ class LearnScreen extends StatelessWidget {
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                         onTap: () {
-                          provider.selectCategory(category, forLearning: true);
                           Navigator.push(
                             context,
                             MaterialPageRoute(
