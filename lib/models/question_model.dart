@@ -1,25 +1,34 @@
+import 'package:hive/hive.dart';
+
+part 'question_model.g.dart';
+
+@HiveType(typeId: 3) // Unique typeId (0 for Progress, 1 for QuizBadge, 2 for QuizCategory)
 class Question {
+  @HiveField(0)
   final int id;
-  final String question;
+
+  @HiveField(1)
+  final String question; // Changed from 'text' to 'question'
+
+  @HiveField(2)
   final List<String> options;
+
+  @HiveField(3)
   final int answer;
-  final String explanation;
 
   Question({
     required this.id,
     required this.question,
     required this.options,
     required this.answer,
-    required this.explanation,
   });
 
   factory Question.fromJson(Map<String, dynamic> json) {
     return Question(
       id: json['id'],
-      question: json['question'],
-      options: List<String>.from(json['options']),
-      answer: json['answer'],
-      explanation: json['explanation'],
+      question: json['question'] as String,
+      options: (json['options'] as List).cast<String>(),
+      answer: json['answer'] as int,
     );
   }
 }

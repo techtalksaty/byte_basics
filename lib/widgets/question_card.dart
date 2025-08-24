@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/question_model.dart';
+import '../providers/quiz_provider.dart';
+import '../screens/progress_screen.dart';
 
 class QuestionCard extends StatelessWidget {
   final Question question;
@@ -19,18 +22,21 @@ class QuestionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<QuizProvider>(context, listen: false);
+    final isCorrect = showResult && selectedAnswer == question.options[question.answer];
+
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            question.question,
+            question.question, // Changed from question.text to question.question
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 20),
-          // Custom radio-like selection using ListTile and GestureDetector
-          ...question.options.map((option) {
+          const SizedBox(height: 16),
+          ...question.options.asMap().entries.map((entry) {
+            final option = entry.value;
             final isSelected = selectedAnswer == option;
             return GestureDetector(
               onTap: showResult ? null : () => onAnswerSelected(option),
@@ -41,39 +47,46 @@ class QuestionCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(color: Theme.of(context).primaryColor),
-                    color: isSelected
-                        ? Theme.of(context).primaryColor
-                        : Colors.transparent,
+                    color: isSelected ? Theme.of(context).primaryColor : Colors.transparent,
                   ),
-                  child: isSelected
-                      ? const Icon(
-                          Icons.check,
-                          size: 16,
+                  child: isSelected && showResult
+                      ? Icon(
+                          isCorrect ? Icons.check : Icons.close,
                           color: Colors.white,
+                          size: 16,
                         )
                       : null,
                 ),
                 title: Text(option),
-                enabled: !showResult,
               ),
             );
           }),
           if (showResult) ...[
-            const SizedBox(height: 20),
+            const SizedBox(height: 16),
             Text(
-              selectedAnswer == question.options[question.answer]
-                  ? 'Correct!'
-                  : 'Incorrect. ${question.explanation}',
+              isCorrect ? 'Correct!' : 'Incorrect. The correct answer is: ${question.options[question.answer]}',
               style: TextStyle(
-                color: selectedAnswer == question.options[question.answer]
-                    ? Colors.green
-                    : Colors.red,
+                color: isCorrect ? Colors.green : Colors.red,
+                fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: onNext,
-              child: const Text('Next Question'),
+            const SizedBox(height: 16),
+            Center(
+              child: ElevatedButton(
+                onPressed: provider.isLastQuestion
+                    ? () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => ProgressScreen(
+                              highlightCategory: provider.selectedCategory?.name,
+                            ),
+                          ),
+                        );
+                      }
+                    : onNext,
+                child: Text(provider.isLastQuestion ? 'Show Results' : 'Next Question'),
+              ),
             ),
           ],
         ],
