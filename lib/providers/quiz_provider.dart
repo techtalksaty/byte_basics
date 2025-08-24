@@ -70,18 +70,7 @@ class QuizProvider with ChangeNotifier {
       }
 
       // Initialize badges for each quiz category
-      for (var category in _categories) {
-        if (!_badgeBox.containsKey(category.name)) {
-          _badgeBox.put(
-            category.name,
-            QuizBadge(
-              name: '${category.name} Master',
-              category: category.name,
-              earned: false,
-            ),
-          );
-        }
-      }
+      await _initializeBadges();
     } catch (e) {
       _error = 'Failed to load data: $e';
       // Debug-only: Log errors
@@ -91,6 +80,25 @@ class QuizProvider with ChangeNotifier {
     } finally {
       _isLoading = false;
       notifyListeners();
+    }
+  }
+
+  Future<void> _initializeBadges() async {
+    // Debug-only: Log badge initialization
+    if (kDebugMode) {
+      developer.log('Initializing badges for ${_categories.length} categories', name: 'QuizProvider');
+    }
+    for (var category in _categories) {
+      if (!_badgeBox.containsKey(category.name)) {
+        await _badgeBox.put(
+          category.name,
+          QuizBadge(
+            name: '${category.name} Master',
+            category: category.name,
+            earned: false,
+          ),
+        );
+      }
     }
   }
 
@@ -179,22 +187,30 @@ class QuizProvider with ChangeNotifier {
     return _badgeBox.values.where((badge) => badge.earned).toList();
   }
 
-  void resetProgress() {
-    _progressBox.clear();
-    for (var category in _categories) {
-      _badgeBox.put(
-        category.name,
-        QuizBadge(
-          name: '${category.name} Master',
-          category: category.name,
-          earned: false,
-        ),
-      );
+  Future<void> resetProgress() async {
+    // Debug-only: Log reset start
+    if (kDebugMode) {
+      developer.log('Starting progress reset: progressBox=${_progressBox.length}, badgeBox=${_badgeBox.length}', name: 'QuizProvider');
     }
+
+    // Clear all progress and badges
+    await _progressBox.clear();
+    await _badgeBox.clear();
+
+    // Reinitialize badges
+    await _initializeBadges();
+
     // Reset UI state
+    _selectedCategory = null;
     _selectedAnswer = null;
     _showResult = false;
     _currentQuestionIndex = 0;
+
+    // Debug-only: Log reset completion
+    if (kDebugMode) {
+      developer.log('Progress reset complete: progressBox=${_progressBox.length}, badgeBox=${_badgeBox.length}', name: 'QuizProvider');
+    }
+
     notifyListeners();
   }
 }

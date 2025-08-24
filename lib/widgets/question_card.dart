@@ -31,11 +31,12 @@ class QuestionCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            question.question, // Changed from question.text to question.question
+            question.question,
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 16),
           ...question.options.asMap().entries.map((entry) {
+            final index = entry.key;
             final option = entry.value;
             final isSelected = selectedAnswer == option;
             return GestureDetector(
@@ -73,18 +74,20 @@ class QuestionCard extends StatelessWidget {
             const SizedBox(height: 16),
             Center(
               child: ElevatedButton(
-                onPressed: provider.isLastQuestion
-                    ? () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => ProgressScreen(
-                              highlightCategory: provider.selectedCategory?.name,
-                            ),
-                          ),
-                        );
-                      }
-                    : onNext,
+                onPressed: () {
+                  if (provider.isLastQuestion) {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => ProgressScreen(
+                          highlightCategory: provider.selectedCategory?.name,
+                        ),
+                      ),
+                    );
+                  } else {
+                    onNext();
+                  }
+                },
                 child: Text(provider.isLastQuestion ? 'Show Results' : 'Next Question'),
               ),
             ),
