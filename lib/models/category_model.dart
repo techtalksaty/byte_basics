@@ -12,13 +12,9 @@ class QuizCategory {
   @HiveField(1)
   final List<Question> questions;
 
-  @HiveField(2)
-  final List<LearnContent> learnContent; // Added for learning material
-
   QuizCategory({
     required this.name,
     required this.questions,
-    required this.learnContent,
   });
 
   factory QuizCategory.fromJson(Map<String, dynamic> json) {
@@ -27,7 +23,27 @@ class QuizCategory {
       questions: (json['questions'] as List)
           .map((q) => Question.fromJson(q as Map<String, dynamic>))
           .toList(),
-      learnContent: (json['learnContent'] as List? ?? [])
+    );
+  }
+}
+
+@HiveType(typeId: 5) // Unique typeId (0: Progress, 1: QuizBadge, 2: QuizCategory, 3: Question, 4: LearnContent)
+class LearnCategory {
+  @HiveField(0)
+  final String name;
+
+  @HiveField(1)
+  final List<LearnContent> learnContent;
+
+  LearnCategory({
+    required this.name,
+    required this.learnContent,
+  });
+
+  factory LearnCategory.fromJson(Map<String, dynamic> json) {
+    return LearnCategory(
+      name: json['name'] as String,
+      learnContent: (json['learnContent'] as List)
           .map((c) => LearnContent.fromJson(c as Map<String, dynamic>))
           .toList(),
     );

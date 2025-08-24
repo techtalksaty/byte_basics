@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/category_model.dart';
 
 class CategoryLearnScreen extends StatelessWidget {
-  final QuizCategory category;
+  final LearnCategory category;
 
   const CategoryLearnScreen({super.key, required this.category});
 
