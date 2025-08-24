@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
+import 'models/badge_model.dart';
 import 'models/progress_model.dart';
 import 'providers/quiz_provider.dart';
 import 'screens/home_screen.dart';
@@ -9,7 +10,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(ProgressAdapter());
+  Hive.registerAdapter(QuizBadgeAdapter()); // Updated to QuizBadgeAdapter
   await Hive.openBox<Progress>('progressBox');
+  await Hive.openBox<QuizBadge>('badgeBox'); // Updated to QuizBadge
   runApp(const ByteBasicsApp());
 }
 
