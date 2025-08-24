@@ -19,17 +19,20 @@ class QuizCategoryAdapter extends TypeAdapter<QuizCategory> {
     return QuizCategory(
       name: fields[0] as String,
       questions: (fields[1] as List).cast<Question>(),
+      learnContent: (fields[2] as List).cast<LearnContent>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, QuizCategory obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
-      ..write(obj.questions);
+      ..write(obj.questions)
+      ..writeByte(2)
+      ..write(obj.learnContent);
   }
 
   @override

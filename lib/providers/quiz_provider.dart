@@ -25,7 +25,6 @@ class QuizProvider with ChangeNotifier {
   bool get showResult => _showResult;
   bool get isLoading => _isLoading;
   String? get error => _error;
-
   bool get isLastQuestion =>
       _selectedCategory != null &&
       _currentQuestionIndex == _selectedCategory!.questions.length - 1;
@@ -73,7 +72,7 @@ class QuizProvider with ChangeNotifier {
     }
   }
 
-  void selectCategory(QuizCategory category) {
+  void selectCategory(QuizCategory category, {bool forLearning = false}) {
     _selectedCategory = category;
     _currentQuestionIndex = 0;
     _selectedAnswer = null;

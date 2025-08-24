@@ -8,7 +8,7 @@ class Progress extends HiveObject {
   final String category;
 
   @HiveField(1)
-  final int questionId;
+  final String questionId;
 
   @HiveField(2)
   final bool correct;
