@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/quiz_provider.dart';
 import 'category_screen.dart';
+import 'learn_screen.dart';
 import 'progress_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -14,26 +15,40 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('ByteBasics'),
-        centerTitle: true, // Center the app bar title
+        centerTitle: true,
       ),
       body: provider.isLoading
           ? const Center(child: CircularProgressIndicator())
           : provider.error != null
               ? Center(child: Text(provider.error!))
-              : Center( // Explicitly center the entire content
+              : Center(
                   child: SizedBox(
-                    width: double.infinity, // Ensure full screen width
+                    width: double.infinity,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center, // Center horizontally
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Spacer(flex: 2), // Push content toward center vertically
+                        const Spacer(flex: 2),
                         const Text(
                           'Welcome to ByteBasics!\nLearn Computer Basics',
                           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center, // Center text
+                          textAlign: TextAlign.center,
                         ),
                         const SizedBox(height: 20),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (_) => const LearnScreen()),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                            textStyle: const TextStyle(fontSize: 18),
+                          ),
+                          child: const Text('Learn'),
+                        ),
+                        const SizedBox(height: 10),
                         ElevatedButton(
                           onPressed: () {
                             Navigator.push(
@@ -45,7 +60,7 @@ class HomeScreen extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                             textStyle: const TextStyle(fontSize: 18),
                           ),
-                          child: const Text('Start Learning'),
+                          child: const Text('Knowledge Check'),
                         ),
                         const SizedBox(height: 10),
                         ElevatedButton(
@@ -61,7 +76,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                           child: const Text('View Progress'),
                         ),
-                        const Spacer(flex: 3), // Push badge to bottom
+                        const Spacer(flex: 3),
                         const Padding(
                           padding: EdgeInsets.only(bottom: 16.0),
                           child: Text(
@@ -72,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                               color: Colors.grey,
                               fontWeight: FontWeight.w600,
                             ),
-                            textAlign: TextAlign.center, // Center badge text
+                            textAlign: TextAlign.center,
                           ),
                         ),
                       ],

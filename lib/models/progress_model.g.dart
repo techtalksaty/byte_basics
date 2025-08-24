@@ -18,7 +18,7 @@ class ProgressAdapter extends TypeAdapter<Progress> {
     };
     return Progress(
       category: fields[0] as String,
-      questionId: fields[1] as int,
+      questionId: fields[1] as String,
       correct: fields[2] as bool,
     );
   }
