@@ -24,6 +24,7 @@ class QuestionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<QuizProvider>(context, listen: false);
     final isCorrect = showResult && selectedAnswer == question.options[question.answer];
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -32,7 +33,7 @@ class QuestionCard extends StatelessWidget {
         children: [
           Text(
             question.question,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(height: 16),
           ...question.options.asMap().entries.map((entry) {
@@ -47,18 +48,18 @@ class QuestionCard extends StatelessWidget {
                   height: 24,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(color: Theme.of(context).primaryColor),
-                    color: isSelected ? Theme.of(context).primaryColor : Colors.transparent,
+                    border: Border.all(color: colorScheme.primary),
+                    color: isSelected ? colorScheme.primary : Colors.transparent,
                   ),
                   child: isSelected && showResult
                       ? Icon(
                           isCorrect ? Icons.check : Icons.close,
-                          color: Colors.white,
+                          color: colorScheme.onPrimary,
                           size: 16,
                         )
                       : null,
                 ),
-                title: Text(option),
+                title: Text(option, style: Theme.of(context).textTheme.bodyMedium),
               ),
             );
           }),
@@ -67,7 +68,7 @@ class QuestionCard extends StatelessWidget {
             Text(
               isCorrect ? 'Correct!' : 'Incorrect. The correct answer is: ${question.options[question.answer]}',
               style: TextStyle(
-                color: isCorrect ? Colors.green : Colors.red,
+                color: isCorrect ? colorScheme.secondary : colorScheme.error,
                 fontWeight: FontWeight.bold,
               ),
             ),
